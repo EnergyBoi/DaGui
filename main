@@ -1,0 +1,145 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local Window = OrionLib:MakeWindow({Name = "Hotel Elephant", HidePremium = false, SaveConfig = true, IntroText = "Loading"})
+
+_G.AutoClick = false
+
+local Tab = Window:MakeTab({
+	Name = "Teams",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Hotel Guest",
+	Callback = function()
+		local args = {
+            [1] = "Bright yellow"
+}
+
+game:GetService("ReplicatedStorage").ChangeTeam:InvokeServer(unpack(args))
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Waiter/Waitress",
+	Callback = function()
+		local args = {
+            [1] = "Bright red"
+}
+
+game:GetService("ReplicatedStorage").ChangeTeam:InvokeServer(unpack(args))
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Concierge",
+	Callback = function()
+		local args = {
+            [1] = "Burgundy"
+}
+
+game:GetService("ReplicatedStorage").ChangeTeam:InvokeServer(unpack(args))
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Shop assistant",
+	Callback = function()
+		local args = {
+            [1] = "Bright blue"
+}
+
+game:GetService("ReplicatedStorage").ChangeTeam:InvokeServer(unpack(args))
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Manager",
+	Callback = function()
+		local args = {
+            [1] = "Bright green"
+}
+
+game:GetService("ReplicatedStorage").ChangeTeam:InvokeServer(unpack(args))
+	end	  
+})
+
+
+
+local Tab2 = Window:MakeTab({
+	Name = "Money",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab2:AddButton({
+	Name = "Give self 10000 cash",
+	Callback = function()
+		local args = {
+            [1] = "false",
+            [2] = "10000",
+            [3] = "Cash",
+            [4] = Player
+}
+
+game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+end
+})
+
+Tab2:AddButton({
+	Name = "Give everyone 10000 cash",
+	Callback = function()
+		for i, plr in
+        pairs(Players:GetPlayers()) do
+            local args = {
+            [1] = "false",
+            [2] = "10000",
+            [3] = "Cash",
+            [4] = plr
+            }
+
+game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+        end
+    end
+})
+
+Tab2:AddButton({
+	Name = "take 10000 cash from everyone",
+	Callback = function()
+		for i, plr in
+        pairs(Players:GetPlayers()) do
+            local args = {
+            [1] = "false",
+            [2] = "-10000",
+            [3] = "Cash",
+            [4] = plr
+            }
+
+game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+        end
+    end
+})
+
+local Tab3 = Window:MakeTab({
+	Name = "Boat",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab3:AddButton({
+	Name = "Spawn Jetski",
+	Callback = function()
+		local args = {
+            [1] = "Jetski"
+}
+
+game:GetService("ReplicatedStorage").BoatSpawner:InvokeServer(unpack(args))
+	end	  
+})
+
+
+
+
+OrionLib:Init()
